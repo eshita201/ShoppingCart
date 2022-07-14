@@ -12,7 +12,7 @@ $("#UpdateProduct").submit(function(event){
 
 
     var request = {
-        "url" : `http://shoppingcartlogincrud.herokuapp.com//api/products/${data.id}`,
+        "url" : `http://shoppingcartlogincrud.herokuapp.com/api/products/${data.id}`,
         "method" : "PUT",
         "data" : data
     }
@@ -31,7 +31,7 @@ $(document).ready(function(){
         var id = $(this).attr("data-id")
      
         var request = {
-            "url" : `http://shoppingcartlogincrud.herokuapp.com//api/products/${id}`,
+            "url" : `http://shoppingcartlogincrud.herokuapp.com/api/products/${id}`,
             "method" : "DELETE"
         }
 
