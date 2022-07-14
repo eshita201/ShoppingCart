@@ -7,10 +7,11 @@ const routes = express.Router()
 const axios = require('axios')
 const Products = require('../model/product_model');
 /////////////////////////////////////////////////////////////////////////////////////////////
-const config1= require('../config/config1')
+//const config1= require('../config/config1')
 const session = require('express-session')
 const { render } = require('ejs')
-routes.use(session({secret: config1.sessionSecret}))
+const { eventNames } = require('../model/product_model')
+routes.use(session({secret: process.env.sessionSecret}))
 ///////////////////////////////Session Management /////////////////////////////////////////
 routes.get('/',(req,res)=>{res.render('login')})
 routes.get('/login',auth.isLogOut,(req,res)=>{res.render('login')})

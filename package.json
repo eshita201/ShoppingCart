@@ -20,5 +20,13 @@
     "mongoose": "^6.4.4",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.19"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eshita201/ShoppingCart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eshita201/ShoppingCart/issues"
+  },
+  "homepage": "https://github.com/eshita201/ShoppingCart#readme"
 }

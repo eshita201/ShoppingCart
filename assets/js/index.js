@@ -25,8 +25,9 @@ $("#UpdateProduct").submit(function(event){
 
 
 if(window.location.pathname == "/AllProduct"){
-
-   $("#DeleteProduct").click(function(){
+ 
+$(document).ready(function(){
+   $(".DeleteProduct").click(function(){
         var id = $(this).attr("data-id")
      
         var request = {
@@ -42,4 +43,5 @@ if(window.location.pathname == "/AllProduct"){
         }
 
     })
+   });
 }
