@@ -2,7 +2,7 @@ const axios = require('axios');
 
 
 exports.update_product =    (req, res) =>{
-    axios.get('http://localhost:3000/api/products', { params : { id : req.query.id }})
+    axios.get('http://shoppingcartlogincrud.herokuapp.com//api/products', { params : { id : req.query.id }})
         .then(function(productData){
            
             res.render("UpdateProduct", { Product : productData.data})
@@ -13,7 +13,7 @@ exports.update_product =    (req, res) =>{
 
 }
 exports.all_product = (req,res)=>{
-        axios.get('http://localhost:3000/api/products')
+        axios.get('http://shoppingcartlogincrud.herokuapp.com//api/products')
             .then(function(productData){
                 res.render("AllProduct", { Products : productData.data})
             })
