@@ -12,7 +12,7 @@ $("#UpdateProduct").submit(function(event){
     
 
     var request = {
-        "url" : `shoppingdevapp.herokuapp.com/api/products/${data.id}`,
+        "url" : `/api/products/${data.id}`,
         "method" : "PUT",
         "data" : data
     }
@@ -38,7 +38,7 @@ if(window.location.pathname == "/AllProduct"){
          
 
           var request = {
-            "url" : `shoppingdevapp.herokuapp.com/api/products/${id}`,
+            "url" : `/api/products/${id}`,
             "method" : "DELETE"
            }
 
