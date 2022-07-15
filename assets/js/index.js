@@ -9,10 +9,10 @@ $("#UpdateProduct").submit(function(event){
     $.map(unindexed_array, function(n, i){
         data[n['name']] = n['value']
     })
-
+    
 
     var request = {
-        "url" : `http://shoppingcartlogincrud.herokuapp.com/api/products/${data.id}`,
+        "url" : `http://localhost:3000/api/products/${data.id}`,
         "method" : "PUT",
         "data" : data
     }
@@ -25,23 +25,42 @@ $("#UpdateProduct").submit(function(event){
 
 
 if(window.location.pathname == "/AllProduct"){
- 
-$(document).ready(function(){
-   $(".DeleteProduct").click(function(){
-        var id = $(this).attr("data-id")
-     
-        var request = {
-            "url" : `http://shoppingcartlogincrud.herokuapp.com/api/products/${id}`,
+
+  
+  
+    $(document).ready(function(){
+       
+        console.log('Reached in document load');
+       
+        $(".p-1").click(function(){
+            var id = $(this).attr("value")
+        //  alert(val);
+         
+
+          var request = {
+            "url" : `http://localhost:3000/api/products/${id}`,
             "method" : "DELETE"
-        }
+           }
 
-        if(confirm("Do you really want to delete this record?")){
-            $.ajax(request).done(function(response){
-                alert("Data Deleted Successfully!");
-                location.reload();
-            })
-        }
+            if(confirm("Do you really want to delete this record?")){
+                $.ajax(request).done(function(response){
+                    alert("Data Deleted Successfully!");
+                    location.reload();
+                })
+            }
+        });
 
-    })
+        
+
    });
 }
+
+
+$(document).ready(function () {
+        $("#UpdateImage").click(function(){
+            var id = $(this).attr("src")
+            var prod_id = $(this).attr("value")
+            
+        });   
+    });
+

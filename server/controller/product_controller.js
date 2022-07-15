@@ -1,48 +1,20 @@
 const Products = require('../model/product_model');
 const axios = require('axios')
-exports.addProduct = (req,res) =>{
-  
-        console.log(req.body.Name ,req.body.Price ,  req.body.Category )
-        console.log("Reached inside Add Product Function");
-       
-        const product =new Products({
-            Name: req.body.Name,
-            Price: req.body.Price,
-            Category: req.body.Category
-        })
+//exports.addProduct = 
 
 
-        if(!req.body){
-            console.log("Reached inside Add Product  Function 18");
-            res.status(400).send({ message : "Content can not be emtpy!"});
-            return;
-        }
-        product.save().then(product=>{
-             res.redirect('/AllProduct');
-        })
-        .catch(err=>{
-            res.json({
-                message: err.message || "Some error occurred while adding the product"
-            })
-        })
-
-   
-
-}
 
 exports.find = (req, res)=>{
 
     if(req.query.id){
         const id = req.query.id;
 
-        Products.findById(id)
+    Products.findById(id)
             .then(data =>{
                 if(!data){
                     res.status(404).send({ message : "Not found user with id "+ id})
                 }else{
-                   res.send(data)
-                   // res.render('AllProduct', { Products : response.data });
-                       
+                   res.send(data)     
                 }
             })
             .catch(err =>{
@@ -52,10 +24,8 @@ exports.find = (req, res)=>{
     }else{
         Products.find()
             .then(product => {
-                //res.send(product)
+
                 res.send(product)
-//res.render('AllProduct',{ Products : product ,   user_email: req.session.user_email ,
-                  //  user_adminCheck: req.session.user_adminCheck })
             })
             .catch(err => {
                 res.status(500).send({ message : err.message || "Error Occurred while retriving user information" })
@@ -112,4 +82,29 @@ exports.delete = (req, res)=>{
                 message: "Could not delete User with id=" + id
             });
         });
+
+        exports.AddProductstoCart = async(req,res)=>
+        {
+            console.log('Add to cart function');
+            const id = req.query.id;
+          
+           // res.render('AddtoCart',  {  Prodid: product._id, Prodname: product.Name, ProdPrice: product.Price,
+           //     Prodcategory: product.Category }        )
+
+                Products.findById(id)
+                .then(data =>{
+                    if(!data){
+                        res.status(404).send({ message : "Not found user with id "+ id})
+                    }else{
+                        res.send(data)
+                      // res.render('AddtoCart')   
+                    }
+                })
+                .catch(err =>{
+                    res.status(500).send({ message: "Erro retrieving user with id " + id})
+                })
+        }
+
+       
+
 }

@@ -13,6 +13,11 @@ var productSchema = mongoose.Schema({
     Category:{
         type: String,
         required: true
+    },
+    Image :{
+       
+        type: String,
+        required: true
     }
 })
 
