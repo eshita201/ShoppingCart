@@ -13,7 +13,7 @@ app.use(require("express-session")({
     resave: true,
     saveUninitialized: true
 }));
- 
+
 
 app.use(bodyparser.urlencoded({extended: true}))
 dotenv.config({path : 'config.env' })
@@ -24,7 +24,6 @@ app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
 app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 app.use('/',require('./server/routes/routes'))
 connectDB();
-
 
 app.listen(PORT,()=>{console.log(`App is running on  http://localhost:${PORT} `)})
 
