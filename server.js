@@ -5,7 +5,7 @@ const path = require('path');
 const app=express();
 const connectDB =require('./server/database/connection')
 const axios = require('axios')
-
+const auth=require('./server/middleware/auth')
 var mongoose = require('mongoose');
 app.use(require("express-session")({
     secret: "ShopClose",
@@ -21,7 +21,7 @@ app.set("view engine","ejs")
 app.use('/files', express.static("files"));
 app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
 app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
-app.use('/',(req,res)=>{res.render('login')})
+app.use('/',require('./server/routes/routes'))
 connectDB();
 
 
