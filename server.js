@@ -18,10 +18,11 @@ app.use(bodyparser.urlencoded({extended: true}))
 dotenv.config({path : 'config.env' })
 const PORT = process.env.PORT || 8080
 app.set("view engine","ejs")
+app.use('/',require('./server/routes/routes'))
 app.use('/files', express.static("files"));
 app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
 app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
-app.use('/',require('./server/routes/routes'))
+
 connectDB();
 
 
