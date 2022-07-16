@@ -8,7 +8,6 @@ const axios = require('axios')
 const Products = require('../model/product_model');
 const multerInstance = require('../config/multer_file');
 /////////////////////////////////////////////////////////////////////////////////////////////
-
 const session = require('express-session')
 const { render } = require('ejs')
 routes.use(session({secret: process.env.sessionSecret}))

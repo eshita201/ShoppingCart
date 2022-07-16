@@ -13,7 +13,6 @@ app.use(require("express-session")({
     saveUninitialized: true
 }));
  
-
 app.use(bodyparser.urlencoded({extended: true}))
 dotenv.config({path : 'config.env' })
 const PORT = process.env.PORT || 8080
