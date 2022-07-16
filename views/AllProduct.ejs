@@ -36,10 +36,15 @@
                             <a class="p-1" value="<%= Products[i]._id%>">Delete </a> &nbsp;
                         </td>
                         <td>
-                            <a class="AddtoCart" href="/AddProductstoCart?id=<%= Products[i]._id%>"> Addtocart</a>
+                            <a class="AddtoCart" value="<%= Products[i]._id%>"> Addtocart</a>
                         </td>
+                      
+
                     </tr>
                     <% } %>
+                    <tr><td>
+                        <a class="GotoCart" href="/GotoCart"> Go To Cart</a>
+                    </td></tr>
                     </tbody>
              </table> 
             </form> 

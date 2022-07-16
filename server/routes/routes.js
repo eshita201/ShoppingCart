@@ -67,10 +67,14 @@ routes.post('/AddProduct',multerInstance.upload.single('image'),(req,res) =>{
 routes.get('/AllProduct',auth.isLogin,services.all_product)
 routes.get('/api/products',product_controller.find);
 routes.get('/UpdateProduct',auth.isLogin,services.update_product)
-routes.put('/api/products/:id',multerInstance.upload.single('image'),product_controller.update);
+routes.put('/api/products/:id',product_controller.update);
 routes.delete('/api/products/:id', product_controller.delete);
 //routes.get('/AddProductstoCart',auth.isLogin, services.AddProductstoCart);
-//routes.get('/AddProductstoCart',auth.isLogin, product_controller.AddProductstoCart);
+routes.post('/api/producttocart/:id',product_controller.AddProductstoCart);
+routes.get('/GotoCart',product_controller.GotoCart);
+routes.get('/displayCart',(req,res)=>{res.render('DisplayCart')});
+
+
 /////////////////////////////Product Management ////////////////////////////////////////////////
 
 

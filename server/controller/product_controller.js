@@ -1,8 +1,6 @@
 const Products = require('../model/product_model');
+const Cart = require('../model/cart');
 const axios = require('axios')
-//exports.addProduct = 
-
-
 
 exports.find = (req, res)=>{
 
@@ -36,7 +34,6 @@ exports.find = (req, res)=>{
 }
 
 
-// Update a new idetified user by user id
 exports.update = (req, res)=>{
 
 
@@ -54,7 +51,7 @@ exports.update = (req, res)=>{
             if(!data){
                 res.status(404).send({ message : `Cannot Update product with ${id}. Maybe product not found!`})
             }else{
-              //  res.render('AllProduct', { Product : product  } )
+     
                 res.send(data)
             }
         })
@@ -83,28 +80,61 @@ exports.delete = (req, res)=>{
             });
         });
 
-        exports.AddProductstoCart = async(req,res)=>
-        {
-            console.log('Add to cart function');
-            const id = req.query.id;
-          
-           // res.render('AddtoCart',  {  Prodid: product._id, Prodname: product.Name, ProdPrice: product.Price,
-           //     Prodcategory: product.Category }        )
-
-                Products.findById(id)
-                .then(data =>{
-                    if(!data){
-                        res.status(404).send({ message : "Not found user with id "+ id})
-                    }else{
-                        res.send(data)
-                      // res.render('AddtoCart')   
-                    }
-                })
-                .catch(err =>{
-                    res.status(500).send({ message: "Erro retrieving user with id " + id})
-                })
-        }
-
+        
        
 
 }
+exports.AddProductstoCart = async(req,res)=>
+        {
+            console.log("Reached inside Add Product to cart Function ");
+            console.log('Add to cart function');
+            const _id = req.params.id;
+            console.log("Id is =>  ", _id);
+           
+            const products = await Products.findOne({_id}).lean()
+            console.log("Prodcut is =>  ", products._id , "  ", products.Price  , " ", req.session.user_id);
+          
+          
+            const cart = new Cart({
+                productId: products._id,
+                productName: products.Name,
+                quantity: 1,
+                price: products.Price,
+                userid:  req.session.user_id,
+                useremail: req.session.user_email,
+                productImage: products.Image
+            });
+          
+            cart.save().then(data=>{
+                res.send({
+                    message : "Product was added to cart successfully!"
+                })
+             
+             //  message : "Product was added to cart successfully!"
+            })
+            .catch(err=>{
+                res.json({
+                    message: err.message || "Some error occurred while adding the product"
+                 })
+            })
+        }
+
+exports.GotoCart = async(req,res)=>{
+    console.log('Display cart function',req.session.user_id  );
+    const userid = req.session.user_id;
+
+  
+    Cart.find(  {"userid" : userid} )
+    .then(data =>{
+        if(!data){
+            res.status(404).send({ message : "Not found Cart with id "+ userid})
+        }else{
+          res.render('displayCart', {cart : data, user_id : req.session.user_id,
+            user_email : req.session.user_email} )     
+        }
+    })
+    .catch(err =>{
+        res.status(500).send({ message: "Erro retrieving user with id " + userid})
+    })
+
+} 

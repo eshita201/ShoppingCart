@@ -39,7 +39,9 @@
                         <td><%= Products[i].Category %></td>
                         <td><img src="<%= Products[i].Image %>"  width="100" height="100">
                         </td>
-                        <td>   <a class="AddtoCart" href="/AddProductstoCart?id=<%= Products[i]._id%>"> Addtocart</a>
+                        <td>  
+                            
+                            <a class="AddtoCart" value="<%= Products[i]._id%>"> Addtocart</a>
                         </td>
                     </tr>
                 </table>

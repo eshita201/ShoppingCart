@@ -22,12 +22,14 @@ exports.all_product = (req,res)=>{
             })
 }
 exports.AddProductstoCart = (req,res)=>{
-    axios.get(process.env.siteUrl+'/api/products', { params : { id : req.query.id }})
-        .then(function(productData){
+    axios.get(process.env.siteUrl+'/api/producttocart', { params : { id : req.query.id }})
+        .then(function(cart){
            
-            res.render("AddtoCart", { Products : productData.data , user_email: req.session.user_email})
+            res.render("AddtoCart", {cart : cart.data , user_id: req.session.user_id,
+                user_email: req.session.user_email})
         })
         .catch(err =>{
+            console.log("errored out here")
             res.send(err);
         })
 }

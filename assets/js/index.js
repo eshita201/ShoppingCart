@@ -50,17 +50,46 @@ if(window.location.pathname == "/AllProduct"){
             }
         });
 
+        $(".AddtoCart").click(function(event){
+            var id = $(this).attr("value")
+           
+
+          var request = {
+                "url" : `/api/producttocart/${id}`,
+                "method" : "POST",
         
+            }
+        
+            if(confirm("Do you really want to add this product to cart?")){
+                $.ajax(request).done(function(response){
+                alert("Data Added to cart Successfully!");
+            })
+            }
+        });
 
    });
 }
 
+if(window.location.pathname == "/index"){
 
-$(document).ready(function () {
-        $("#UpdateImage").click(function(){
-            var id = $(this).attr("src")
-            var prod_id = $(this).attr("value")
+  
+    $(document).ready(function () {
+            $(".AddtoCart").click(function(event){
+                var id = $(this).attr("value")
             
-        });   
-    });
 
+            var request = {
+                    "url" : `/api/producttocart/${id}`,
+                    "method" : "POST",
+            
+                }
+            
+                if(confirm("Do you really want to add this product to cart?")){
+                    $.ajax(request).done(function(response){
+                    alert("Data Added to cart Successfully!");
+                })
+                }
+            });  
+        });
+
+}
