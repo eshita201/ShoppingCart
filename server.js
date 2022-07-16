@@ -7,6 +7,7 @@ const connectDB =require('./server/database/connection')
 const axios = require('axios')
 const auth=require('./server/middleware/auth')
 var mongoose = require('mongoose');
+
 app.use(require("express-session")({
     secret: "ShopClose",
     resave: true,
